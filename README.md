@@ -42,7 +42,7 @@ npm run build
 
 3. **Deploy**
    - Click "Deploy site"
-   - Your site will be live at `https://your-site-name.netlify.app`
+   - Your site will be live at `shopeersstop.netlify.app`
 
 ## Environment Variables
 

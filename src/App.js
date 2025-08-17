@@ -7,6 +7,7 @@ import ProductDetail from './components/ProductDetail';
 import Cart from './components/Cart';
 import Payment from './components/Payment';
 import OrderSuccess from './components/OrderSuccess';
+import Toast from './components/Toast';
 import { fetchProducts } from './services/api';
 
 const productImages = {
@@ -34,6 +35,8 @@ function App() {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [loading, setLoading] = useState(true);
   const [totalAmount, setTotalAmount] = useState(0);
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -88,6 +91,8 @@ function App() {
     } else {
       setCart([...cart, { ...product, quantity: 1 }]);
     }
+    setToastMessage(`${product.name} added to cart!`);
+    setShowToast(true);
     if (selectedProduct) setSelectedProduct(null);
   };
 
@@ -190,6 +195,12 @@ function App() {
           onAddToCart={addToCart}
         />
       )}
+      
+      <Toast 
+        message={toastMessage}
+        show={showToast}
+        onHide={() => setShowToast(false)}
+      />
     </div>
   );
 }
